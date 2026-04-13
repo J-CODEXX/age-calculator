@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Age Calculator</title>
+
+<style>
+body {
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg, #1e1b4b, #9333ea);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  color:white;
+}
+
+/* GLASS CARD */
+.container {
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(15px);
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+  width:350px;
+  box-shadow:0 0 40px rgba(147,51,234,0.4);
+  border:1px solid rgba(255,255,255,0.1);
+}
+
+h1 {
+  margin-bottom:20px;
+  color:#f472b6;
+}
+
+/* INPUT */
+input {
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border:none;
+  border-radius:8px;
+  background:rgba(0,0,0,0.4);
+  color:white;
+  font-size:15px;
+}
+
+/* BUTTON */
+button {
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border:none;
+  border-radius:8px;
+  background:linear-gradient(90deg, #f472b6, #9333ea);
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover {
+  transform:scale(1.05);
+  box-shadow:0 0 15px rgba(244,114,182,0.6);
+}
+
+/* RESULT */
+.result {
+  margin-top:20px;
+  font-size:18px;
+  color:#facc15;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>✨ Age Calculator</h1>
+
+  <input type="date" id="dob">
+
+  <button onclick="calculateAge()">Calculate Age</button>
+
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+function calculateAge() {
+  let dob = document.getElementById("dob").value;
+  let result = document.getElementById("result");
+
+  if (!dob) {
+    result.innerText = "Select your birth date first";
+    return;
+  }
+
+  let birthDate = new Date(dob);
+  let today = new Date();
+
+  let years = today.getFullYear() - birthDate.getFullYear();
+  let months = today.getMonth() - birthDate.getMonth();
+  let days = today.getDate() - birthDate.getDate();
+
+  if (days < 0) {
+    months--;
+    days += 30;
+  }
+
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+
+  result.innerText = `You are ${years} years, ${months} months, ${days} days old 🎉`;
+}
+</script>
+
+</body>
+</html>
